@@ -1,69 +1,54 @@
-# React + TypeScript + Vite
+# StayBook Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+StayBook Frontend is a **React-based web application** for a hotel booking system.  
+It provides an intuitive UI for customers to **search hotels, book rooms, manage bookings**, and for admins to **manage hotels and users**.  
 
-Currently, two official plugins are available:
+This frontend connects with the [StayBook Backend](https://github.com/jayanth539/staybook) (Spring Boot + PostgreSQL + JWT).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
+- User Registration & Login (JWT-based authentication)
+- Role-based UI (Customer / Admin)
+- Hotel Search & Booking
+- Manage Bookings (view / cancel)
+- Admin Dashboard for hotel & user management
+- API integration with backend via Axios
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠 Tech Stack
+- **React** (Vite for fast builds)
+- **Axios** (API communication)
+- **React Router** (navigation)
+- **TailwindCSS / MUI** (UI styling)
+- **Context API** (auth & global state)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📦 Installation & Setup
+
+### 1. Clone the repository
+```sh
+git clone https://github.com/jayanth539/staybook-frontend.git
+cd staybook-frontend
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependencies
+```sh
+npm install
+```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 3. Start the development server
+```sh
+npm run dev
+```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+This will start the app at http://localhost:5173
+
+## API Integration
+
+By default, the frontend expects the backend to run at:
+```sh
+http://localhost:8080
 ```
