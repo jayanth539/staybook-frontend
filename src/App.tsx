@@ -4,9 +4,18 @@ import AppRouter from "./routes/AppRouter";
 
 function App() {
   return (
-    <div>
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        background: "#f8fafc",
+      }}
+    >
       <Navbar />
-      <AppRouter />
+      <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+        <AppRouter />
+      </div>
     </div>
   );
 }
