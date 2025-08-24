@@ -1,20 +1,13 @@
-// src/App.tsx
 import Navbar from "./components/Navbar";
 import AppRouter from "./routes/AppRouter";
+import "./styles/layout.css";
 
 function App() {
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        background: "#f8fafc",
-      }}
-    >
-      <Navbar />
-      <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-        <AppRouter />
+    <div className="app-container">
+      <Navbar /> {/* fixed on top */}
+      <div className="app-content">
+        <AppRouter /> {/* centered pages */}
       </div>
     </div>
   );
