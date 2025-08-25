@@ -1,18 +1,35 @@
 // src/components/Navbar.tsx
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import "../styles/layout.css";
 
 const Navbar = () => {
   return (
-    <nav style={{ padding: "1rem", background: "#f8f9fa" }}>
-      <ul style={{ display: "flex", gap: "1rem", listStyle: "none", margin: 0, padding: 0 }}>
+    <nav className="navbar">
+      <ul>
         <li>
-          <Link to="/">🏠 Home</Link>
+          <NavLink 
+            to="/" 
+            end 
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            🏠 Home
+          </NavLink>
         </li>
         <li>
-          <Link to="/register">📝 Register</Link>
+          <NavLink 
+            to="/register" 
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            📝 Register
+          </NavLink>
         </li>
         <li>
-          <Link to="/login">🔑 Login</Link>
+          <NavLink 
+            to="/login" 
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            🔑 Login
+          </NavLink>
         </li>
       </ul>
     </nav>
