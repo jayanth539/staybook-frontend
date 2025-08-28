@@ -1,21 +1,53 @@
 // src/api/auth.ts
 import api from "./axios";
-import type { UserRequest, UserResponse } from "../types/api";
 
+export type Role = "CUSTOMER" | "ADMIN";
+
+export type RegisterRequest = {
+  username: string;
+  password: string;
+  role: Role;
+};
+
+export type RegisterResponse = {
+  id?: number;
+  username: string;
+  role?: Role;
+};
+
+export type LoginResponse = { token: string };
+
+/**
+ * Backend expects:
+ * POST /api/users
+ * {
+ *   "username": "king",
+ *   "password": "password",
+ *   "role": "CUSTOMER"
+ * }
+ */
 export async function registerUser(
-  data: UserRequest
-): Promise<UserResponse> {
-  const response = await api.post<UserResponse>("/auth/register", data);
-  return response.data;
+  data: RegisterRequest
+): Promise<RegisterResponse> {
+  const res = await api.post<RegisterResponse>("/api/users", data);
+  return res.data;
 }
 
+/**
+ * Backend expects:
+ * POST /auth/login
+ * {
+ *   "username": "king",
+ *   "password": "password"
+ * }
+ * -> { "token": "..." }
+ */
 export async function loginUser(
   username: string,
   password: string
-): Promise<{ token: string }> {
-  const response = await api.post<{ token: string }>("/auth/login", {
-    username,
-    password,
-  });
-  return response.data;
+): Promise<LoginResponse> {
+  console.log("Attempting login POST", username, password);
+  const res = await api.post<LoginResponse>("/auth/login", { username, password });
+  console.log("Login POST response", res);
+  return res.data;
 }
