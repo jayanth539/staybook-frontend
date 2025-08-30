@@ -5,9 +5,10 @@ import "../styles/layout.css";
 type Booking = {
   id: number;
   hotelName: string;
-  checkIn: string;   // ISO date
-  checkOut: string;  // ISO date
-  total: number;
+  checkInDate: string;   // ISO date
+  checkOutDate: string;  // ISO date
+  total?: number;
+  username?: string;
 };
 
 export default function MyBookings() {
@@ -21,7 +22,9 @@ export default function MyBookings() {
         setErr(null);
         setLoading(true);
         const { data } = await http.get("/bookings/me");
-        setRows(data ?? []);
+        console.log(import.meta.env.VITE_API_BASE)
+        console.log("Bookings API response:", data);
+        setRows(Array.isArray(data) ? data : []);
       } catch (e: any) {
         setErr(e?.response?.data?.message || "Failed to load bookings");
       } finally {
@@ -37,7 +40,7 @@ export default function MyBookings() {
         {loading && <p>Loading…</p>}
         {err && <p className="error">{err}</p>}
         {!loading && !err && rows.length === 0 && <p>No bookings yet.</p>}
-        {!loading && !err && rows.length > 0 && (
+        {!loading && !err && Array.isArray(rows) && rows.length > 0 && (
           <ul className="list" style={{ display: "grid", gap: "0.5rem", padding: 0 }}>
             {rows.map((b) => (
               <li
@@ -50,7 +53,7 @@ export default function MyBookings() {
                 }}
               >
                 <strong>{b.hotelName}</strong>
-                <div>{b.checkIn} → {b.checkOut}</div>
+                <div>{b.checkInDate} → {b.checkOutDate}</div>
                 <div>₹{b.total}</div>
               </li>
             ))}

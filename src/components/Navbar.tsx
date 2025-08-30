@@ -51,12 +51,12 @@ export default function Navbar() {
             </NavLink>
           </>
         ) : (
-          <div className="userbox">
-            <span className="muted">
-              Hi, {user.name ?? (user as any).email ?? "User"}
-            </span>
-            <button className="btn" onClick={doLogout}>Logout</button>
-          </div>
+            <div className="userbox">
+              <span className="muted">
+                Hi, {user ? user.username : "Guest"}!
+              </span>
+              <button className="btn" onClick={doLogout}>Logout</button>
+            </div>
         )}
       </div>
     </nav>
